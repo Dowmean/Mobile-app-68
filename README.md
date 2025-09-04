@@ -1,6 +1,8 @@
 
 แอป Flutter สร้างทีมโปเกมอน (จำกัด 3 ตัว) ใช้ **GetX** + **GetStorage** และดึงข้อมูลจาก **PokeAPI**. รองรับ Web/Android
-([Click me!](https://drive.google.com/file/d/1bbEk6ohKuw77CSKM2FINZvz4-k1SxQGw/view?usp=sharing))
+
+
+วิดีโอ:([Click me!](https://drive.google.com/file/d/1bbEk6ohKuw77CSKM2FINZvz4-k1SxQGw/view?usp=sharing))
 
 ## คุณสมบัติ
 - เลือกโปเกมอน 3 ตัวจากกริดด้านล่าง (แตะเพื่อเพิ่ม/แทนที่, กากบาทเพื่อลบ)
