@@ -1,0 +1,34 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"                 // (หรือใช้ org.jetbrains.kotlin.android ก็ได้)
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.wichit"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.example.wichit"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions { jvmTarget = "17" }
+
+    buildTypes {
+        release { signingConfig = signingConfigs.debug }
+    }
+}
+
+flutter { source = "../.." }
+
+dependencies {
+    // (ว่างได้เลย ถ้าไม่ใช้ lib ฝั่ง Android เพิ่ม)
+}

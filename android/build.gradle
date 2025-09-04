@@ -1,0 +1,34 @@
+// android/build.gradle  (ROOT)
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // ให้สอดคล้องกับ Gradle wrapper (แนะนำ Gradle 8.4+ สำหรับ AGP 8.3.0)
+        classpath "com.android.tools.build:gradle:8.3.0"
+        // ✅ ต้องมี: Kotlin Gradle Plugin (ให้ตรงกับที่ใช้ใน app/build.gradle)
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24"
+    }
+}
+
+// ที่เหลือคือ utility เดิม ๆ
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = "../build"
+
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+

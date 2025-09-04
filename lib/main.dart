@@ -1,0 +1,15 @@
+import 'package:assign2/page/PokemonSelectionPage.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init(); // init storage
+
+  runApp(GetMaterialApp(
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(useMaterial3: true),
+    home: PokemonSelectionPage(),
+  ));
+}
