@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>MCP Weather Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin-top: 16px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label { font-weight: 600; }
+    input, select, button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    button { cursor: pointer; }
+    .muted { color: #666; font-size: 14px; }
+    pre { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>MCP Weather Chat</h1>
+  <p class="muted">เลือกเครื่องมือและกรอกข้อมูล จากนั้นกด “Ask” เพื่อเรียกใช้ MCP Server</p>
+
+  <form class="card" method="post" action="/ask">
+    <div class="row">
+      <div>
+        <label>Tool</label>
+        <select name="tool">
+          <option value="get_forecast">get_forecast (พยากรณ์จาก lat/lon)</option>
+          <option value="get_alerts">get_alerts (ประกาศเตือนตามรัฐ US)</option>
+        </select>
+      </div>
+      <div>
+        <label>ภาษา / Language</label>
+        <select name="lang">
+          <option value="en" {{ 'selected' if lang == 'en' else '' }}>English</option>
+          <option value="th" {{ 'selected' if lang == 'th' else '' }}>ไทย</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <div>
+        <label>US State (เช่น CA, NY) หรือพิมพ์ไทยได้ (เช่น แคลิฟอร์เนีย)</label>
+        <input name="state" placeholder="CA" />
+      </div>
+      <div></div>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <div>
+        <label>Latitude (เช่น 34.05)</label>
+        <input name="latitude" type="number" step="any" value="34.05" />
+      </div>
+      <div>
+        <label>Longitude (เช่น -118.25)</label>
+        <input name="longitude" type="number" step="any" value="-118.25" />
+      </div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <button type="submit">Ask</button>
+    </div>
+    <p class="muted" style="margin-top:8px;">
+      หมายเหตุ: แหล่งข้อมูล NWS เป็นของสหรัฐอเมริกา — ใช้พิกัดในสหรัฐจะตอบได้ชัดกว่า
+    </p>
+  </form>
+
+  {% if answer %}
+    <div class="card">
+      <h3>Answer</h3>
+      <pre>{{ answer }}</pre>
+    </div>
+  {% endif %}
+</body>
+</html>
